@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :authenticate, :except => [:show, :new, :create]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
-  before_filter :not_signed_in, :only => [:new, :create]
   
   def index
     @title = "All users"
@@ -67,20 +66,11 @@ class UsersController < ApplicationController
     end
     
     def admin_user
-     # code as suggested fails test for non signed in users.
-     #  redirect_to(root_path) unless current_user.admin?
-     
-     if !signed_in?
-       redirect_to(signin_path)
-     elsif !current_user.admin?
-      redirect_to(root_path)
-     # if get here it's a signed in admin user
+   # to make sure admin_user doesn't delete themselves
+     @user = User.find(params[:id])
+   # make sure authenticate first so signed in, otherwise this fails.  
+     redirect_to(root_path) if !current_user.admin? || current_user?(@user)
+         
     end
     
-    end
-    
-    def not_signed_in
-    	# shouldn't already be signed in for new or create actions
-    	redirect_to(root_path) if signed_in?
-    end
 end
