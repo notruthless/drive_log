@@ -1,20 +1,25 @@
 # == Schema Information
-# Schema version: 20110502205400
+# Schema version: 20110610012744
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean
 #
+
 require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 
+  has_many :log_entries, :dependent => :destroy
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

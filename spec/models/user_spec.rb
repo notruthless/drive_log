@@ -146,4 +146,25 @@ it "should accept valid email addresses" do
     end
   end # admin attribute
   
+  describe "log_entry associations" do
+    before(:each) do
+      @user = User.create(@attr)
+      @entry1 = Factory(:log_entry, :user => @user,  :start_time => 60.minutes.ago, :end_time => 1.minute.ago)
+      @entry2 = Factory(:log_entry, :user => @user,  :start_time => 10.minutes.ago, :end_time => 40.minutes.ago)
+    end
+
+    it "should have a log_entry attribute" do
+      @user.should respond_to(:log_entries)
+    end
+    it "should have the right microposts in the right order" do
+      @user.log_entries.should == [@entry2, @entry1]
+    end
+    
+    it "should destroy associated microposts" do
+      @user.destroy
+      [@entry1, @entry2].each do |entry|
+        LogEntry.find_by_id(entry.id).should be_nil
+      end
+    end
+  end
 end

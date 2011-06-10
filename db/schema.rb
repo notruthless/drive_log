@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601180229) do
+ActiveRecord::Schema.define(:version => 20110610012744) do
+
+  create_table "log_entries", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "night"
+    t.string   "notes"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "log_entries", ["user_id"], :name => "index_log_entries_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
