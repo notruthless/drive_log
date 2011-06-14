@@ -1,8 +1,8 @@
-# Ruby on Rails Tutorial: sample application
+# Driving Log
 
-This is starting out as the sample application for
+This is a log to track driving time in preparation for getting a driver's license.
+
+It is based on the sample application for
 [*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.org/)
 by [Michael Hartl](http://michaelhartl.com/).
 
-With some changes to make it appropriate for my final project.
-I will update the readme at some point once it's clear we're on track... :)

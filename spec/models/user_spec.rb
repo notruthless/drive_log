@@ -156,11 +156,11 @@ it "should accept valid email addresses" do
     it "should have a log_entry attribute" do
       @user.should respond_to(:log_entries)
     end
-    it "should have the right microposts in the right order" do
+    it "should have the right log_entries in the right order" do
       @user.log_entries.should == [@entry2, @entry1]
     end
     
-    it "should destroy associated microposts" do
+    it "should destroy associated log_entries" do
       @user.destroy
       [@entry1, @entry2].each do |entry|
         LogEntry.find_by_id(entry.id).should be_nil

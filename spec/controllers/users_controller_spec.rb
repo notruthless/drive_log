@@ -101,9 +101,22 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
-
-  
-  
+=begin
+#OK, this JUST DOESN"T work even though the selectors are there in the html.
+   it "should show the user's log entries" do
+      st1 = 360.minutes.ago
+      et1 = 100.minute.ago
+      elapsed1 = (et1-st1)/60
+      st2 = 40.minutes.ago
+      et2 = 10.minutes.ago
+      elapsed2 = (et2-st2)/60
+      entry1 = Factory(:log_entry, :user => @user,  :start_time => st1, :end_time => et1, :notes => "A B C")
+      entry2 = Factory(:log_entry, :user => @user,  :start_time => st2, :end_time => et2, :notes => "Foo Bar")
+      get :show, :id => @user
+      response.should have_selector("span.time", :time => elapsed1.round.to_s )
+      response.should have_selector("span.notes", :notes => entry2.notes)
+    end
+=end  
   end
   
   describe "GET 'new'" do

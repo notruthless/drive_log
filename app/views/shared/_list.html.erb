@@ -1,0 +1,6 @@
+ <% unless @list_items.empty? %>
+	<table class="log_entries" summary="User log entries">
+		<%= render @list_items %>
+	</table>
+	<%= will_paginate @list_items %>
+<% end %>     

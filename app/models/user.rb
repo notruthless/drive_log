@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :log_entries, :dependent => :destroy
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  Total_time = { :day => 40*60, :night => 10*60, :all => 50*60} # in minutes. constant for now, preferences later?
+
   
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
@@ -32,7 +34,45 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length       => { :within => 6..40 }
   before_save :encrypt_password
+  
+  scope :admin, where(:admin => true)
 
+
+  def total_elapsed_time (kind = nil)
+       e_time = 0 
+      if kind.class == Symbol
+         entries = log_entries.send(kind) #:day or :night
+      else
+        entries = log_entries
+      end
+      entries.each do |entry|
+         e_time += entry.elapsed_time
+      end
+      return e_time
+
+ end
+  
+  def time_remaining(kind = nil)
+	    t = time_required(kind) - total_elapsed_time(kind)
+      return t<0? 0 : t
+	end
+
+	def time_required (kind = nil)
+	# this could be retrieved from user preferences at some later point.
+	# kind should be :day or :night
+		total = nil
+		if kind.class == Symbol
+		 total = Total_time[kind]
+		end
+		
+		if !total  # no param or invalid kind
+			total = Total_time[:all]
+		end
+		return total
+	end
+	
+
+  
  # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
     # Compare encrypted_password with the encrypted version of
@@ -51,7 +91,6 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
   end
-
 
   private
 

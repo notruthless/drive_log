@@ -5,10 +5,39 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+		 <% unless @user.log_entries.empty? %>
+			<table class="log_entries" summary="User log entries">
+				<%= render @log_entries %>
+			</table>
+			<%= will_paginate @log_entries %>
+		<% end %>     
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
-    </td>
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %> <br />
+      <strong>Total Time</strong> 
+				<%= render 'shared/hourmin', :t => @user.total_elapsed_time %> <br />
+      <strong>Day</strong> 
+				<%= render 'shared/hourmin', :t => @user.total_elapsed_time(:day) %> <br />
+      <strong>Night</strong> 
+				<%= render 'shared/hourmin', :t => @user.total_elapsed_time(:night) %> <br />
+			<br />
+			<% all = @user.time_remaining %>
+			<% night = @user.time_remaining(:night) %>
+			<% if all == 0 &&  night == 0 %>
+        <strong> DONE with required hours! </strong>
+      <% else %>
+        <strong>Remaining Needed</strong> <br />
+			  <% if all > 0 %>
+				  <strong>TOTAL:</strong>
+				  <%= render 'shared/hourmin', :t => all %> <br />
+        <% end %>
+			  <% if night > 0 %>
+          <em><strong>Night:</strong>
+              <%= render 'shared/hourmin', :t => night %> 
+          </em>
+        <% end %>
+      <% end %>
+   </td>
   </tr>
 </table>

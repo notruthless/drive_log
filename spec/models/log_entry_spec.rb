@@ -49,5 +49,15 @@ describe LogEntry do
       @user.log_entries.build(:notes => "a" * 251).should_not be_valid
     end
   end
+  
+  describe "log entries" do
+    before(:each) do
+      @entry = @user.log_entries.create(@attr)
+    end
+
+    it "should calculate elapsed time" do
+      @entry.elapsed_time.should == ((@attr[:end_time] - @attr[:start_time])/60).round
+    end
+  end
  
 end

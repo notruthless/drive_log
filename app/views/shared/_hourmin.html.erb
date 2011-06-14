@@ -1,0 +1,9 @@
+  <%# t is an elapsed time as a fixnum %>
+  <% if (t >= 60) %>
+  	<% h = (t /60).to_i %> 
+  	<%= pluralize(h, "hour") %>
+  <% end %>
+  <% m = (t%60).to_i %>  
+  <% if (m > 0) %>
+  	<%= pluralize(m, "minute") %>
+  <% end %>

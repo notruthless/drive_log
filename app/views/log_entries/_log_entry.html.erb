@@ -1,0 +1,28 @@
+<tr class="log_entry">
+  <td> <span class="date">
+  <%= log_entry.start_time.strftime( "%m/%d/%y at %I:%M%p")   %>
+  </span>
+  </td>
+  <td> <span class="night">
+  <% if log_entry.night? %>
+     <%# <img src="images/night.jpg" alt="Night" title="Night" /> %>
+     <%= image_tag("night.jpg", :size => "20x20", :alt => "night", :title => "Night") %>
+  <% end %>
+  </span>
+  <td> <span class="time">
+  <%= render 'shared/hourmin', :t => log_entry.elapsed_time  %>
+  </span>
+  </td>
+  </td>
+  <td >
+    <span class="notes"><%= log_entry.notes %></span>
+    <span class="timestamp">
+      <br /><em><small>Entered <%= time_ago_in_words(log_entry.created_at) %> ago.<small></em>
+    </span>
+  </td>
+  <td>
+    <%= link_to "delete", log_entry, :method => :delete,
+                                     :confirm => "You sure?",
+                                     :title => log_entry.notes %>
+  </td>  
+</tr>

@@ -190,3 +190,58 @@ ul.users {
 .users li {
   list-style: none;
 }
+
+h1.log_entry {
+  margin-bottom: 0.3em;
+}
+
+table.log_entry {
+  margin-top: 1em;
+}
+
+table.log_entries tr {
+  height: 70px;
+}
+
+table.log_entries tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.log_entries tr td.log_entry {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.log_entries tr td.log_entry span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.log_entry {
+  font-size: 80%;
+}
+
+form.new_log_entry {
+  margin-bottom: 2em;
+}
+
+form.new_log_entry textarea {
+  height: 4em;
+  margin-bottom: 0;
+}

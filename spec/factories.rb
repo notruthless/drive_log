@@ -13,4 +13,6 @@ end
 Factory.define :log_entry do |entry|
   entry.notes "Foo bar"
   entry.association :user
+  entry.start_time 20.minutes.ago
+  entry.end_time 10.minutes.ago
 end

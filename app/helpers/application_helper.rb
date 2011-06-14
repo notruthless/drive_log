@@ -13,4 +13,8 @@ module ApplicationHelper
   def logo
     image_tag("logo.png", :alt => "Sample App", :class => "round")
   end
+  
+  def night
+   image_tag("night.jpg",  'alt="Night"', 'title="Night"')
+  end
 end
