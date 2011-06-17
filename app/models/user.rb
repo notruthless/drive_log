@@ -40,16 +40,19 @@ class User < ActiveRecord::Base
 
   def total_elapsed_time (kind = nil)
        e_time = 0 
-      if kind.class == Symbol
-         entries = log_entries.send(kind) #:day or :night
-      else
-        entries = log_entries
-      end
-      entries.each do |entry|
-         e_time += entry.elapsed_time
-      end
-      return e_time
-
+      unless log_entries.empty?
+				if kind.class == Symbol
+					 entries = log_entries.send(kind) #:day or :night
+				else
+					entries = log_entries
+				end
+				entries.each do |entry|
+			    if entry
+					   e_time += entry.elapsed_time
+					end
+				end
+     end
+		return e_time
  end
   
   def time_remaining(kind = nil)

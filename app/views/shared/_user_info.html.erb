@@ -10,10 +10,9 @@
     </span>
   </a>
   </div>
-  
+
 	<% unless user.log_entries.empty? %>
-		<%= render :partial => 'shared/hourmin', 
-							:locals => { :t => user.total_elapsed_time , :msg => "Total Time" } %>
+		<%= render 'shared/hourmin', :t => user.total_elapsed_time , :msg => "Total Time" %>
 		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:day), :msg => "Day" %> 
 		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:night), :msg => "Night" %>
 		<% all = user.time_remaining %>
@@ -33,3 +32,4 @@
 		<% end %>
 
 	<% end %>
+	

@@ -25,7 +25,7 @@ describe LogEntriesController do
     describe "failure" do
 
       before(:each) do
-        @attr = { :start_time => 0 }
+        @attr = { :start_time => nil }
       end
 
       it "should not create a log entry" do

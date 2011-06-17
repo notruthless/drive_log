@@ -17,7 +17,8 @@ class LogEntry < ActiveRecord::Base
   attr_accessible :night, :notes, :start_time, :end_time
   
   belongs_to :user
-  
+
+# Need to fix these to validate for actual time?
   validates :start_time, :presence => { :message => "must be a valid date/time" }
   validates :end_time, :presence => {:message => "must be a valid date/time"}
   validates :notes, :length => { :maximum => 250 }
@@ -31,7 +32,15 @@ class LogEntry < ActiveRecord::Base
   scope :day, where(:night => false)
   
   # returns the elapsed time in minutes
+  # I thought I could count on end_time and start_time being numeric, but apparently they are coming in as nil
+  # after a failed log_entry creation.
   def elapsed_time
-    ((end_time - start_time)/60).round
+    if end_time && start_time
+       return ((end_time - start_time)/60).round
+    else
+       return 0
+    end
   end
 end
+
+
