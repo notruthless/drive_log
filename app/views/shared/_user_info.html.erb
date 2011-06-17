@@ -1,11 +1,35 @@
+
 <div class="user_info">
-  <a href="<%= user_path(current_user) %>">
-    <%= gravatar_for current_user, :size => 30 %>
+  <a href="<%= user_path(user) %>">
+      <%= gravatar_for user, :size => 30 %>
     <span class="user_name">
-      <%= current_user.name %>
+      <%= user.name   %> 
     </span>
-    <span class="log_entries">
-      <%= pluralize(current_user.log_entries.count, "log entry") %>
+    <span class="num_log_entries">
+      <%= pluralize(user.log_entries.count, "log entry") %>
     </span>
   </a>
-</div>
+  </div>
+  
+	<% unless user.log_entries.empty? %>
+		<%= render :partial => 'shared/hourmin', 
+							:locals => { :t => user.total_elapsed_time , :msg => "Total Time" } %>
+		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:day), :msg => "Day" %> 
+		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:night), :msg => "Night" %>
+		<% all = user.time_remaining %>
+		<% night = user.time_remaining(:night) %>
+		<% if all == 0 &&  night == 0 %>
+			<strong> DONE with required hours! </strong>
+		<% else %>
+			<strong>Remaining Needed</strong> <br />
+			<% if all > 0 %>
+				<%= render 'shared/hourmin', :t => all, :msg => "TOTAL" %> <br />
+			<% end %>
+			<% if night > 0 %>
+				<em>
+						<%= render 'shared/hourmin', :t => night, :msg => "Night:" %> 
+				</em>
+			<% end %>
+		<% end %>
+
+	<% end %>

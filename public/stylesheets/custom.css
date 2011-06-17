@@ -94,6 +94,19 @@ a.signup_button {
   padding: 20px;
 }
 
+a.log_entry_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 120px;
+  color: #fff;
+  background: #006400;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 20px;
+}
+
 /* Round corners */
 
 .round {
@@ -105,7 +118,7 @@ a.signup_button {
 footer {
   text-align: center;
   margin-top: 10px;
-  width: 710px;
+  width: 750px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -133,10 +146,13 @@ td.sidebar {
   background: #ffc;
 }
 
+/*
 .profile img.gravatar {
   border: 1px solid #999;
   margin-bottom: -15px;
 }
+*/
+
 div.field, div.actions {
   margin-bottom: 10px;
 }
@@ -195,7 +211,7 @@ h1.log_entry {
   margin-bottom: 0.3em;
 }
 
-table.log_entry {
+table.log_entries {
   margin-top: 1em;
 }
 
@@ -229,13 +245,16 @@ div.user_info a {
   text-decoration: none;
 }
 
+
 div.user_info span.user_name {
   position: absolute;
-}
+} 
 
-div.user_info span.log_entry {
+
+div.user_info span.num_log_entries {
   font-size: 80%;
 }
+
 
 form.new_log_entry {
   margin-bottom: 2em;

@@ -1,4 +1,10 @@
   <%# t is an elapsed time as a fixnum %>
+  <%# msg is the text to go with it (think of better name) %>
+	<span class = "time">
+	  
+  <strong>
+	<%= msg %>
+	</strong>
   <% if (t >= 60) %>
   	<% h = (t /60).to_i %> 
   	<%= pluralize(h, "hour") %>
@@ -7,3 +13,4 @@
   <% if (m > 0) %>
   	<%= pluralize(m, "minute") %>
   <% end %>
+	</span>

@@ -13,8 +13,8 @@ class LogEntriesController < ApplicationController
   end
   
   def destroy
-    @log_entry.destroy
-    redirect_back_or root_path
+   @log_entry.destroy
+    redirect_back_or current_user
   end
 
   private
