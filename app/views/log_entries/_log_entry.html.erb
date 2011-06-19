@@ -12,7 +12,7 @@
   </span>
   </td>
   
-  <td> <span class="time">
+  <td> <span class="elapsed_time">
   <%= render :partial => 'shared/hourmin', 
                 :locals => { :t => log_entry.elapsed_time , :msg => "" } %>
  </span>
@@ -26,9 +26,11 @@
   </td>
   
   <td>
+  <% if current_user?(@user) %>
     <%= link_to "delete", log_entry, :method => :delete,
                                      :confirm => "You sure?",
                                      :title => log_entry.notes %>
+  <% end %>
   </td> 
   
 </tr>

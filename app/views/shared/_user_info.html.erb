@@ -1,7 +1,7 @@
 
 <div class="user_info">
   <a href="<%= user_path(user) %>">
-      <%= gravatar_for user, :size => 30 %>
+      <%= gravatar_for user, :size => 40 %>
     <span class="user_name">
       <%= user.name   %> 
     </span>
@@ -9,20 +9,26 @@
       <%= pluralize(user.log_entries.count, "log entry") %>
     </span>
   </a>
+  <hr />
   </div>
-
+  
+  <div class="user_info_time">
 	<% unless user.log_entries.empty? %>
+	  <p>
+	  <span "class = "current_time">
 		<%= render 'shared/hourmin', :t => user.total_elapsed_time , :msg => "Total Time" %>
 		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:day), :msg => "Day" %> 
 		<%= render 'shared/hourmin', :t => user.total_elapsed_time(:night), :msg => "Night" %>
+	  </span>
+	  </p>
 		<% all = user.time_remaining %>
 		<% night = user.time_remaining(:night) %>
 		<% if all == 0 &&  night == 0 %>
-			<strong> DONE with required hours! </strong>
+			<span class="hours_done"> Required hours complete! </span>
 		<% else %>
-			<strong>Remaining Needed</strong> <br />
+			<span class="hours_remaining">Time remaining</span> <br />
 			<% if all > 0 %>
-				<%= render 'shared/hourmin', :t => all, :msg => "TOTAL" %> <br />
+				<%= render 'shared/hourmin', :t => all, :msg => "TOTAL" %> 
 			<% end %>
 			<% if night > 0 %>
 				<em>
@@ -30,6 +36,7 @@
 				</em>
 			<% end %>
 		<% end %>
-
+		<br />
+	</div>
 	<% end %>
 	

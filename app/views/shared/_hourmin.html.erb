@@ -3,7 +3,7 @@
 
 	<span class = "time">
   <strong>
-	<%= msg %><br />
+	<%= msg %>
 	</strong>
   <% if (t >= 60) %>
   	<% h = (t /60).to_i %> 
@@ -13,5 +13,5 @@
   <% if (m > 0) %>
   	<%= pluralize(m, "minute") %>
   <% end %>
-	</span>
 	<br />
+	</span>

@@ -10,16 +10,17 @@ header {
   padding-top: 20px;
 }
 
-header img {
+/* Don't want a white background on the logo
+  header img {
   padding: 1em;
   background: #fff;
-}
+}*/
 
 section {
   margin-top: 1em;
   font-size: 120%;
-  padding: 20px;
-  background: #fff;
+  padding: 10px;
+  background: #fff; 
 }
 
 section h1 {
@@ -136,7 +137,8 @@ table.profile {
 
 td.main {
   width: 70%;
-  padding: 1em;
+ /* padding: 1em; */
+  vertical-align: top;
 }
 
 td.sidebar {
@@ -146,7 +148,7 @@ td.sidebar {
   background: #ffc;
 }
 
-/*
+/* Don't want to adjust the picture in the sidebar profile image.
 .profile img.gravatar {
   border: 1px solid #999;
   margin-bottom: -15px;
@@ -201,6 +203,7 @@ div.field, div.actions {
 
 ul.users {
   margin-top: lem;
+  vertical-align: top;
 }
 
 .users li {
@@ -212,18 +215,22 @@ h1.log_entry {
 }
 
 table.log_entries {
-  margin-top: 1em;
+   margin-top: 0.1em; 
+  vertical-align: top;
 }
+
 
 table.log_entries tr {
   height: 70px;
 }
 
+/*
 table.log_entries tr td.gravatar {
   border-top: 1px solid #ccc;
   vertical-align: top;
   width: 50px;
 }
+*/
 
 table.log_entries tr td.log_entry {
   border-top: 1px solid #ccc;
@@ -233,9 +240,16 @@ table.log_entries tr td.log_entry {
 
 table.log_entries tr td.log_entry span.timestamp {
   display: block;
+  font-size: 75%;
+  color: #666;
+}
+
+table.log_entries tr td.log_entry span.elapsed_time {
+  display: block;
   font-size: 85%;
   color: #666;
 }
+
 
 div.user_info img {
   padding-right: 0.1em;
@@ -248,12 +262,23 @@ div.user_info a {
 
 div.user_info span.user_name {
   position: absolute;
+  font-size: 110%;
+  font-weight: bold;
 } 
 
 
 div.user_info span.num_log_entries {
-  font-size: 80%;
+  font-size: 100%;
 }
+
+div.user_info hr {
+ /* border-top: 1px dotted #f00;
+  color: #fff;
+  background-color: #fff; */
+  height: 2px;
+  /*width:50%;*/
+}
+
 
 
 form.new_log_entry {
@@ -263,4 +288,27 @@ form.new_log_entry {
 form.new_log_entry textarea {
   height: 4em;
   margin-bottom: 0;
+}
+
+div.user_info_time span.hours_done {
+   font-weight:bold;
+   font-style:italic;
+    color: #006600;
+}
+
+div.user_info_time span.current_time {
+/* want to use this to control the sidebar time formatting, including
+extra room at the bottom before the hours remaining are shown, but it doesn't seem to work
+*/
+
+}
+
+div.user_info_time span.hours_remaining {
+  font-style:italic;
+  color: #FF0000;
+}
+
+span.user_info_text {
+  color: #0066FF
+  font-size = 80%;
 }
