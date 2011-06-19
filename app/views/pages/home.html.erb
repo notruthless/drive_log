@@ -13,7 +13,11 @@
 <% else %>
 
   <p>
-    Welcome to the Driving Log! <br /> Create an account or log in to add driving trips to your log!
+    Welcome to the Driving Log! 
+    Got your permit?  Enter the details of when you drive and track your 
+    practice hours towards the total needed to qualify for your drivers license.
+    
+   <p><%= link_to "Create an account", signup_path %>  or <%= link_to "sign in", signin_path %> to add driving trips to your log!
   </p>
 
   <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>

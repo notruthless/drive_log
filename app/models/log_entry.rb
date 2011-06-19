@@ -16,9 +16,9 @@
 class LogEntry < ActiveRecord::Base
   attr_accessible :night, :notes, :start_time, :end_time
   
-  belongs_to :user
+  belongs_to :user 
 
-# Need to fix these to validate for actual time?
+# Need to fix these to validate for actual time not just anything, especially relative to each other.
   validates :start_time, :presence => { :message => "must be a valid date/time" }
   validates :end_time, :presence => {:message => "must be a valid date/time"}
   validates :notes, :length => { :maximum => 250 }

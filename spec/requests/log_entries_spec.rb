@@ -17,7 +17,7 @@ describe "LogEntries" do
       it "should not make a new log_entry" do
         lambda do
           visit root_path
-          fill_in :log_entry_start_time, :with => ""
+
           click_button
           response.should render_template('pages/home')
           response.should have_selector("div#error_explanation")
@@ -28,12 +28,18 @@ describe "LogEntries" do
     describe "success" do
 
       it "should make a new log_entry" do
-        start_time = 20.minutes.ago
-        end_time = 5.minutes.ago
         lambda do
           visit root_path
-          fill_in :log_entry_start_time, :with => start_time
-          fill_in :log_entry_end_time, :with => end_time
+          fill_in 'log_entry_start_time_3i', :with => "18" 
+          fill_in 'log_entry_start_time_2i', :with => "6"
+          fill_in 'log_entry_start_time_1i', :with => "2011" 
+          fill_in 'log_entry_start_time_4i', :with => "12" 
+          fill_in 'log_entry_start_time_5i', :with => "30" 
+          fill_in 'log_entry_end_time_3i', :with => "18" 
+          fill_in 'log_entry_end_time_2i', :with => "6" 
+          fill_in 'log_entry_end_time_1i', :with => "2011" 
+          fill_in 'log_entry_end_time_4i', :with => "13"
+          fill_in 'log_entry_end_time_5i', :with => "30" 
           click_button
           response.should render_template('pages/home')
         end.should change(LogEntry, :count).by(1)

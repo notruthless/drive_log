@@ -10,6 +10,12 @@ header {
   padding-top: 20px;
 }
 
+
+label {
+    width:75px;    /*Or however much space you need for the form’s labels*/
+    float:left;
+}
+
 /* Don't want a white background on the logo
   header img {
   padding: 1em;
@@ -312,3 +318,5 @@ span.user_info_text {
   color: #0066FF
   font-size = 80%;
 }
+
+
