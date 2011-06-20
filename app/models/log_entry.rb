@@ -18,12 +18,14 @@ class LogEntry < ActiveRecord::Base
   
   belongs_to :user 
 
-# Need to fix these to validate for actual time not just anything, especially relative to each other.
+# Need to fix these to validate for actual time not just anything, especially relative to each other
   validates :start_time, :presence => { :message => "must be a valid date/time" }
   validates :end_time, :presence => {:message => "must be a valid date/time"}
   validates :notes, :length => { :maximum => 250 }
   validates :user_id, :presence => true
-  
+
+  validate :start_must_be_before_end_time
+
   # we want them to be in order by start time, most recent first
   default_scope :order => 'log_entries.start_time DESC'
   
@@ -41,6 +43,15 @@ class LogEntry < ActiveRecord::Base
        return 0
     end
   end
+  
+  
+  def start_must_be_before_end_time
+    
+    errors.add(:start_time, "must be before end time") unless
+		   start_time && end_time && (start_time < end_time)
+  end 
 end
+
+
 
 

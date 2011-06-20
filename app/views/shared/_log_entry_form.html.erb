@@ -4,24 +4,21 @@
     <% nowTime = Time.now %>
    <div class=”field_container”>
 			<%= f.label :start_time %>
-			<%= f.datetime_select :start_time, 
+      <%= f.text_field :start_time %>
+			<%#= f.datetime_select :start_time, 
 			         :default => nowTime,
 							:prompt => true, 
 							:order => [:day, :month, :year, :hour, :minute] %>
 			<%#= f.datetime_select :start_time, 
-			# this should do exactly what I want
+			# this should do exactly what I want, if it worked
 			         :default => nowTime,
 							:prompt => {:hour => "Start Hour", :minute => "Start Minute"}, 
 							:order => [:day, :month, :year, :hour, :minute] %>
-      <%# = f.datetime_select :start_time,  
-         :default => nowTime,
-         # this suggested solution looks nice but generates random values when submitted
-         :prompt => { :hour => "Start Hour", :minute => "Start Minute", 
-                     :year => nowTime.year, :month => nowTime.strftime("%B"), :day => nowTime.day} %>
 		</div>
    <div class=”field_container”>
 			<%= f.label :end_time %>
-			<%= f.datetime_select:end_time, 
+      <%= f.text_field :end_time %>
+			<%#= f.datetime_select:end_time, 
 							:prompt => true, 
 							:default => nowTime,  
 							:order => [:day, :month, :year, :hour, :minute] %>

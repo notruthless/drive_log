@@ -149,8 +149,8 @@ it "should accept valid email addresses" do
   describe "log_entry associations" do
     before(:each) do
       @user = User.create(@attr)
-      @entry1 = Factory(:log_entry, :user => @user,  :start_time => 60.minutes.ago, :end_time => 1.minute.ago)
-      @entry2 = Factory(:log_entry, :user => @user,  :start_time => 10.minutes.ago, :end_time => 40.minutes.ago)
+      @entry1 = Factory(:log_entry, :user => @user,  :start_time => 40.minutes.ago, :end_time => 30.minutes.ago)
+      @entry2 = Factory(:log_entry, :user => @user,  :start_time => 20.minutes.ago, :end_time => 1.minute.ago)
     end
 
     it "should have a log_entry attribute" do
